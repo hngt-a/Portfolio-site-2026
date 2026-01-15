@@ -1,26 +1,136 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-pinyon: 'Pinyon Script', cursive;
+  /* Noto Sans JP as primary for EVERYTHING */
+  --font-base: var(--font-noto), "Noto Sans JP", sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-base);
+  background: black;
+  color: white;
+  font-style: italic;
+  /* Global Italic */
+  /* Fixed Font Size: 10pt */
+  font-size: 9pt;
+  line-height: 2.0;
+  /* Looser line height */
+}
+
+/* --- Global Text Colors & Overrides --- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+div.text-white,
+.notion-text,
+.notion-h1,
+.notion-h2,
+.notion-h3,
+.notion-list-item,
+.notion-asset-caption,
+.notion-table,
+.notion-table-cell,
+td,
+th {
+  color: white !important;
+  font-family: var(--font-base) !important;
+  /* Force Noto Sans */
+}
+
+/* Notion Container Styles */
+.notion-app,
+.notion-frame,
+.notion-scroller,
+.notion {
+  font-family: var(--font-base) !important;
+  background: transparent !important;
+  color: white !important;
+  font-weight: normal !important;
+  /* No Bold Globally */
+}
+
+/* Standardize Font Sizes */
+.notion-text,
+p,
+.notion-list,
+li,
+.notion-table,
+.notion-table-cell,
+td,
+th {
+  font-size: 12pt !important;
+  /* Explicitly 10pt */
+}
+
+@media (max-width: 600px) {
+
+  .notion-text,
+  p,
+  .notion-list,
+  li,
+  .notion-table,
+  .notion-table-cell,
+  td,
+  th {
+    font-size: 10pt !important;
+  }
+}
+
+/* H3 Specific Sizing */
+.notion-h3 {
+  font-size: 1.1em !important;
+}
+
+/* Table Alignment */
+.notion-table-row td,
+.notion-table-cell {
+  vertical-align: top !important;
+}
+
+/* Fix specific Notion block backgrounds */
+.notion-block,
+.notion-page-content {
+  background-color: transparent !important;
+}
+
+/* Clearfix (Keep for general safety) */
+.notion-page-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Custom Font Class for Title (Exception) */
+.font-pinyon {
+  font-family: var(--font-pinyon) !important;
+  font-style: normal;
+}
+
+/* Animations */
+@keyframes gradient-xy {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, #4a0000, #000000, #1a1a1a, #052e00);
+  background-size: 400% 400%;
+  animation: gradient-xy 15s ease infinite;
 }
