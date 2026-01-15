@@ -26,7 +26,7 @@ export default async function WorkPage({
     const recordMap = await getPageContent(work.id)
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500">
+        <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in duration-500 not-italic">
             {/* Navigation (Back) */}
             <div className="flex justify-between items-center text-sm text-gray-500">
                 <Link href={`/${safeLang}`} className="hover:text-black dark:hover:text-white flex items-center gap-1 transition-colors">

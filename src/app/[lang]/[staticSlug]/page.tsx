@@ -23,7 +23,7 @@ export default async function StaticPage({
         const recordMap = await getPageContent(pageId)
 
         return (
-            <div className="max-w-3xl mx-auto animate-in fade-in duration-500">
+            <div className="max-w-3xl mx-auto animate-in fade-in duration-500 not-italic">
                 <NotionPage recordMap={recordMap} rootPageId={pageId} />
             </div>
         )

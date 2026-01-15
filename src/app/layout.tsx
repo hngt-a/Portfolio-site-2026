@@ -19,8 +19,29 @@ const notoSans = Noto_Sans_JP({
 })
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: 'Portfolio Site',
+  title: 'Shin Hanagata',
+  description: 'Dear All Techno-Plastic Fleshes.',
+  openGraph: {
+    title: 'Shin Hanagata',
+    description: 'Dear All Techno-Plastic Fleshes.',
+    url: 'https://shinhanagata.com', // Placeholder, user can update
+    siteName: 'Shin Hanagata Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 800,
+      },
+    ],
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shin Hanagata',
+    description: 'Dear All Techno-Plastic Fleshes.',
+    images: ['/og-image.jpg'],
+  },
 }
 
 export default function RootLayout({
