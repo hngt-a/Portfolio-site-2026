@@ -48,7 +48,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                                 <Link
                                     href={href}
                                     className={cn(
-                                        "hover:opacity-70 transition-opacity decoration-1 underline-offset-4",
+                                        "transition-all decoration-1 underline-offset-4 hover:bg-white hover:text-black hover:no-underline px-1",
                                         isActive ? "underline font-bold opacity-100" : "opacity-100"
                                     )}
                                 >
@@ -61,7 +61,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                     <li>
                         <Link
                             href={pathname.replace(`/${lang}`, `/${lang === 'en' ? 'ja' : 'en'}`)}
-                            className="hover:opacity-70 transition-opacity border border-white rounded-full w-8 h-8 flex items-center justify-center text-xs"
+                            className="transition-all border border-white rounded-full w-8 h-8 flex items-center justify-center text-xs hover:bg-white hover:text-black"
                         >
                             {lang === 'en' ? 'JA' : 'EN'}
                         </Link>
@@ -99,7 +99,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                                 <Link
                                     href={href}
                                     className={cn(
-                                        "hover:opacity-70 transition-opacity decoration-1 underline-offset-8",
+                                        "transition-all decoration-1 underline-offset-8 hover:bg-white hover:text-black hover:no-underline px-2",
                                         isActive ? "underline font-bold" : ""
                                     )}
                                 >
@@ -112,7 +112,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                     <li className="mt-4">
                         <Link
                             href={pathname.replace(`/${lang}`, `/${lang === 'en' ? 'ja' : 'en'}`)}
-                            className="border border-white rounded-full w-12 h-12 flex items-center justify-center text-sm"
+                            className="border border-white rounded-full w-12 h-12 flex items-center justify-center text-sm transition-all hover:bg-white hover:text-black"
                         >
                             {lang === 'en' ? 'JA' : 'EN'}
                         </Link>

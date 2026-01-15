@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import { Pinyon_Script, Noto_Sans_JP } from 'next/font/google'
-import './globals.css'
-
 // Import react-notion-x styles
 import 'react-notion-x/src/styles.css'
+import './globals.css'
 import 'prismjs/themes/prism-tomorrow.css' // Optional for code blocks
 import 'katex/dist/katex.min.css' // Optional for math
 

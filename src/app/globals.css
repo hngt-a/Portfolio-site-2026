@@ -91,8 +91,16 @@ th {
 
 /* Table Alignment */
 .notion-table-row td,
-.notion-table-cell {
+.notion-table-cell,
+.notion-simple-table-cell,
+td,
+th {
   vertical-align: top !important;
+  display: table-cell !important;
+  /* Ensure it behaves like a cell */
+  align-items: flex-start !important;
+  /* If flex is used */
+  justify-content: flex-start !important;
 }
 
 /* Fix specific Notion block backgrounds */
@@ -133,4 +141,34 @@ th {
   background: linear-gradient(-45deg, #4a0000, #000000, #1a1a1a, #052e00);
   background-size: 400% 400%;
   animation: gradient-xy 15s ease infinite;
+}
+
+/* Link Styling - Forced Override */
+/* Link Styling - Forced Override */
+a.notion-link,
+.notion-table-cell a,
+.notion-text a,
+.notion-list-item a,
+.notion-a {
+  color: white !important;
+  text-decoration: underline !important;
+  text-decoration-color: white !important;
+  opacity: 1 !important;
+  /* Negative effect */
+}
+
+/* Hover effect */
+a.notion-link:hover,
+.notion-table-cell a:hover,
+.notion-text a:hover,
+.notion-list-item a:hover,
+.notion-a:hover,
+a:hover {
+  /* Added generic a:hover to catch Navigation links too */
+  background-color: white !important;
+  color: black !important;
+  opacity: 1 !important;
+  text-decoration: none !important;
+  mix-blend-mode: normal !important;
+  /* Reset blend mode on hover for solid look */
 }
