@@ -16,6 +16,11 @@ body {
   font-size: 9pt;
   line-height: 2.0;
   /* Looser line height */
+  /* Disable Antialiasing for "Jagged" look */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+  /* Optional: might help with pixelated look */
 }
 
 /* --- Global Text Colors & Overrides --- */
@@ -87,6 +92,14 @@ th {
 /* H3 Specific Sizing */
 .notion-h3 {
   font-size: 1.1em !important;
+}
+
+/* Notion Width Override */
+.notion-frame,
+.notion-page {
+  max-width: 900px !important;
+  width: 100% !important;
+  /* Ensure centering if margin auto is used by default, though usually it is */
 }
 
 /* Table Alignment */
