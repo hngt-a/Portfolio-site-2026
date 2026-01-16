@@ -71,8 +71,12 @@ li,
 .notion-table-cell,
 td,
 th {
-  font-size: 11pt !important;
+  font-size: 11.5pt !important;
+  line-height: 1.6;
+
   /* Reduced from 12pt */
+  margin-bottom: 0.7em;
+  /* Increase paragraph spacing */
 }
 
 @media (max-width: 600px) {
@@ -97,7 +101,7 @@ th {
 /* Notion Width Override */
 .notion-frame,
 .notion-page {
-  max-width: 900px !important;
+  max-width: 1000px !important;
   width: 100% !important;
   /* Ensure centering if margin auto is used by default, though usually it is */
 }
