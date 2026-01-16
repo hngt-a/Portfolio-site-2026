@@ -12,7 +12,7 @@ interface WorksGridProps {
 
 export const WorksGrid = ({ works, lang }: WorksGridProps) => {
     return (
-        <div className="grid grid-cols-1 min-[1200px]:grid-cols-2 gap-x-12 gap-y-20">
+        <div className="grid grid-cols-1 min-[1100px]:grid-cols-2 gap-x-12 gap-y-20">
             {works.map((work) => (
                 <Link
                     key={work.id}
