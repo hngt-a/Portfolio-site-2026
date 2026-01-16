@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'www.notion.so',
       },
+      {
+        protocol: 'https',
+        hostname: 'gyazo.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.gyazo.com',
+      },
     ],
   },
 };

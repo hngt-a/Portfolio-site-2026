@@ -66,8 +66,8 @@ li,
 .notion-table-cell,
 td,
 th {
-  font-size: 12pt !important;
-  /* Explicitly 10pt */
+  font-size: 11pt !important;
+  /* Reduced from 12pt */
 }
 
 @media (max-width: 600px) {
