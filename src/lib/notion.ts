@@ -149,11 +149,36 @@ export async function getWorkItems(lang: string): Promise<WorkItem[]> {
         throw error;
     }
 }
+// notion-client's recordMap currently arrives doubly-nested
+// (entry.value.value.id) and includes inaccessible blocks
+// shaped like { value: { role: "none" } }. react-notion-x reads
+// entry.value.id directly, so unwrap the extra layer and drop
+// entries with no usable value, otherwise uuidToId(undefined) throws.
+function normalizeRecordMap<T extends Record<string, unknown>>(recordMap: T): T {
+    const tables = ['block', 'collection', 'collection_view', 'notion_user', 'space'] as const
+    for (const tableName of tables) {
+        const table = (recordMap as any)[tableName]
+        if (!table || typeof table !== 'object') continue
+        for (const key of Object.keys(table)) {
+            const entry = table[key]
+            const inner = entry?.value
+            if (inner && typeof inner === 'object' && typeof inner.id !== 'string') {
+                if (inner.value && typeof inner.value === 'object' && typeof inner.value.id === 'string') {
+                    entry.value = inner.value
+                } else {
+                    delete table[key]
+                }
+            }
+        }
+    }
+    return recordMap
+}
+
 export async function getPageContent(pageId: string) {
     try {
         // Use the UNOFFICIAL client for fetching page content
         const recordMap = await notionUnofficial.getPage(pageId);
-        return recordMap;
+        return normalizeRecordMap(recordMap as unknown as Record<string, unknown>) as unknown as ExtendedRecordMap;
     } catch (error: any) {
         console.error(`❌ getPageContent failed: ${error.message}`);
         throw error;
