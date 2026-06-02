@@ -19,9 +19,10 @@ function getLocale(request: NextRequest) {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Top page always goes to the English works listing
+  // Top page goes to the works listing in the browser's locale
   if (pathname === '/') {
-    request.nextUrl.pathname = '/en/works'
+    const locale = getLocale(request)
+    request.nextUrl.pathname = `/${locale}/works`
     return NextResponse.redirect(request.nextUrl)
   }
 
