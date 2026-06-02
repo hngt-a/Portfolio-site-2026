@@ -15,12 +15,11 @@ body {
   /* Fixed Font Size: 10pt */
   font-size: 9pt;
   line-height: 2.0;
+  font-weight: 500;
   /* Looser line height */
-  /* Disable Antialiasing for "Jagged" look */
-  -webkit-font-smoothing: none;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeSpeed;
-  /* Optional: might help with pixelated look */
+  text-rendering: optimizeLegibility;
 }
 
 /* --- Global Text Colors & Overrides --- */
@@ -58,8 +57,7 @@ th {
   font-family: var(--font-base) !important;
   background: transparent !important;
   color: white !important;
-  font-weight: normal !important;
-  /* No Bold Globally */
+  font-weight: 500 !important;
 }
 
 /* Standardize Font Sizes */
@@ -120,6 +118,18 @@ th {
   justify-content: flex-start !important;
 }
 
+/* Tighter row spacing in tables */
+.notion-simple-table td,
+.notion-simple-table th,
+.notion-simple-table-cell,
+.notion-table-cell,
+td,
+th {
+  margin-bottom: 0 !important;
+  line-height: 1.2 !important;
+  padding: 0 0.5em !important;
+}
+
 /* Fix specific Notion block backgrounds */
 .notion-block,
 .notion-page-content {
@@ -138,6 +148,7 @@ th {
   font-family: var(--font-pinyon) !important;
   font-style: normal;
 }
+
 
 /* Animations */
 @keyframes gradient-xy {

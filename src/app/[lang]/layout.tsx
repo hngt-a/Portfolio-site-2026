@@ -16,8 +16,7 @@ export default async function LangLayout({
                 style={{ backgroundImage: 'url(/bg-gradient.jpg)' }}
             />
 
-            {/* Overlay Layer for Readability - REMOVED per user request */}
-            {/* <div className="fixed inset-0 z-[-1] bg-black/40" /> */}
+            <div className="fixed inset-0 z-[-1] bg-black/20" />
 
             {/* Content Layer */}
             <div className="relative flex flex-col min-h-screen">

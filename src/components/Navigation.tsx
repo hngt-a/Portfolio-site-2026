@@ -31,7 +31,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
     return (
         <>
             <nav className="w-full py-6 px-4 md:px-8 flex justify-between items-center z-50 sticky top-0 mix-blend-difference text-white">
-                <div className="font-pinyon text-4xl relative group">
+                <div className="font-pinyon text-[2.475rem] relative group">
                     <Link href={`/${lang}`} className="hover:!text-white hover:!bg-transparent hover:opacity-100">
                         Shin Hanagata
                     </Link>

@@ -2,9 +2,24 @@
 
 import React from 'react'
 import { NotionRenderer } from 'react-notion-x'
-import { ExtendedRecordMap } from 'notion-types'
+import { ExtendedRecordMap, Block } from 'notion-types'
+import { defaultMapImageUrl } from 'notion-utils'
 import Link from 'next/link'
 import Image from 'next/image'
+
+const NOTION_IMAGE_WIDTH = 1600
+
+function mapImageUrl(url: string, block: Block): string | undefined {
+    const normalized = defaultMapImageUrl(url, block)
+    if (!normalized || !normalized.includes('www.notion.so/image/')) {
+        return normalized
+    }
+    const out = new URL(normalized)
+    if (!out.searchParams.has('width')) {
+        out.searchParams.set('width', String(NOTION_IMAGE_WIDTH))
+    }
+    return out.toString()
+}
 
 // Import styles moved to layout, but we need the components mapping for Next.js Image/Link
 // We often need a Code component (using prismjs) and Collection (if we rendered collections, but we manually fetch index).
@@ -26,6 +41,7 @@ export const NotionPage = ({ recordMap, rootPageId }: NotionPageProps) => {
                 fullPage={false} // We embed it in our layout
                 darkMode={false} // Can be dynamic if we implement theme toggle
                 rootPageId={rootPageId}
+                mapImageUrl={mapImageUrl}
                 components={{
                     nextImage: Image,
                     nextLink: Link,
