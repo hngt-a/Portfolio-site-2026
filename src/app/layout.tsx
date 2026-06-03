@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Pinyon_Script, Noto_Sans_JP } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 // Import react-notion-x styles
 import 'react-notion-x/src/styles.css'
 import './globals.css'
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${notoSans.variable} ${pinyon.variable} font-sans`}>
         {children}
+        <Analytics />
       </body>
     </html>
   )

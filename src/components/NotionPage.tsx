@@ -9,7 +9,10 @@ import Image from 'next/image'
 
 const NOTION_IMAGE_WIDTH = 1600
 
-function mapImageUrl(url: string, block: Block): string | undefined {
+function mapImageUrl(url: string | undefined, block: Block): string | undefined {
+    if (!url) {
+        return url
+    }
     const normalized = defaultMapImageUrl(url, block)
     if (!normalized || !normalized.includes('www.notion.so/image/')) {
         return normalized
