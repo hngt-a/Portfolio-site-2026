@@ -118,7 +118,7 @@ th {
   justify-content: flex-start !important;
 }
 
-/* Tighter row spacing in tables */
+/* Row spacing in tables */
 .notion-simple-table td,
 .notion-simple-table th,
 .notion-simple-table-cell,
@@ -126,8 +126,8 @@ th {
 td,
 th {
   margin-bottom: 0 !important;
-  line-height: 1.2 !important;
-  padding: 0 0.5em !important;
+  line-height: 1.35 !important;
+  padding: 0.25em 0.5em !important;
 }
 
 /* Fix specific Notion block backgrounds */
