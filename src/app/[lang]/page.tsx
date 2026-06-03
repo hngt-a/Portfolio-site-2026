@@ -2,7 +2,7 @@
 import { getWorkItems } from '@/lib/notion'
 import { WorksGrid } from '@/components/WorksGrid'
 
-export const revalidate = 60 // ISR: Revalidate every 60 seconds
+export const revalidate = 0 // Always fetch fresh so Notion edits (e.g. Show toggle) reflect on reload
 
 export default async function TopPage({
     params,

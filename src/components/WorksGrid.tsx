@@ -44,20 +44,37 @@ export const WorksGrid = ({ works, lang }: WorksGridProps) => {
                             <h2 className="text-[16pt] tracking-widest leading-tight">
                                 {work.title}
                             </h2>
-                            <span className="text-sm font-mono text-white/70">
-                                {work.year}
-                            </span>
+                            {/* Year + Type (and other meta) on the same line */}
+                            {(() => {
+                                const inlineMeta = Object.entries(work.meta || {}).filter(
+                                    ([key]) => key !== 'Description' && key !== 'Type'
+                                )
+                                const description = work.meta?.Description
 
-                            {/* Meta Information */}
-                            {work.meta && Object.keys(work.meta).length > 0 && (
-                                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-mono text-white/50 mt-1">
-                                    {Object.entries(work.meta).map(([key, value]) => (
-                                        <span key={key} className="tracking-wide">
-                                            {value}
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
+                                return (
+                                    <>
+                                        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono mt-1">
+                                            {work.year && (
+                                                <span className="text-sm text-white/70">
+                                                    {work.year}
+                                                </span>
+                                            )}
+                                            {inlineMeta.map(([key, value]) => (
+                                                <span key={key} className="text-xs text-white/50 tracking-wide">
+                                                    {value}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Description on its own line */}
+                                        {description && (
+                                            <p className="w-full text-sm font-mono text-white/50 tracking-wide mt-1">
+                                                {description}
+                                            </p>
+                                        )}
+                                    </>
+                                )
+                            })()}
                         </div>
                     </div>
                 </Link>

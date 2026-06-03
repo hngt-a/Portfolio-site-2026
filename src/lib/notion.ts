@@ -54,10 +54,20 @@ export async function getWorkItems(lang: string): Promise<WorkItem[]> {
             },
             body: JSON.stringify({
                 filter: {
-                    property: 'Language',
-                    select: {
-                        equals: lang,
-                    },
+                    and: [
+                        {
+                            property: 'Language',
+                            select: {
+                                equals: lang,
+                            },
+                        },
+                        {
+                            property: 'Show',
+                            checkbox: {
+                                equals: true,
+                            },
+                        },
+                    ],
                 },
                 sorts: [
                     {
@@ -66,7 +76,7 @@ export async function getWorkItems(lang: string): Promise<WorkItem[]> {
                     },
                 ],
             }),
-            next: { revalidate: 60 }
+            cache: 'no-store'
         });
 
         if (!response.ok) {
@@ -107,7 +117,7 @@ export async function getWorkItems(lang: string): Promise<WorkItem[]> {
 
             // Extract OTHER properties (Meta)
             const meta: Record<string, string> = {};
-            const keysToExclude = ['Name', 'Title', 'Slug', 'Year', 'Language', 'Cover Image', 'Full Page', 'Order'];
+            const keysToExclude = ['Name', 'Title', 'Slug', 'Year', 'Language', 'Cover Image', 'Full Page', 'Order', 'Show'];
 
             Object.keys(page.properties).forEach(key => {
                 if (keysToExclude.includes(key)) return;
@@ -273,7 +283,7 @@ export const getWorkBySlug = async (slug: string, lang: 'ja' | 'en'): Promise<Wo
 
         // Extract OTHER properties (Meta)
         const meta: Record<string, string> = {};
-        const keysToExclude = ['Name', 'Title', 'Slug', 'Year', 'Language', 'Cover Image', 'Full Page', 'Order'];
+        const keysToExclude = ['Name', 'Title', 'Slug', 'Year', 'Language', 'Cover Image', 'Full Page', 'Order', 'Show'];
 
         Object.keys(page.properties).forEach(key => {
             if (keysToExclude.includes(key)) return;
