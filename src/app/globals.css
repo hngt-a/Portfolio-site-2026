@@ -102,6 +102,10 @@ th {
   max-width: 1000px !important;
   width: 100% !important;
   /* Ensure centering if margin auto is used by default, though usually it is */
+  /* Remove notion-x's built-in horizontal padding so content isn't double-padded
+     on top of <main>'s padding (was making body narrower than the header). */
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 /* Table Alignment */
