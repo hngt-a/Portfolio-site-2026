@@ -184,10 +184,49 @@ function normalizeRecordMap<T extends Record<string, unknown>>(recordMap: T): T 
     return recordMap
 }
 
+// notion-client's getPage does not always fetch deeply-nested children
+// (e.g. a table inside a toggle). When such children are missing, the toggle
+// opens to nothing. Here we walk every block's `content`, fetch any referenced
+// blocks that aren't in the recordMap yet, merge them in, and repeat until the
+// tree is fully hydrated (bounded by a depth cap as a safety net).
+async function hydrateMissingBlocks(recordMap: any): Promise<void> {
+    const MAX_PASSES = 6
+    for (let pass = 0; pass < MAX_PASSES; pass++) {
+        const blocks = recordMap.block ?? {}
+        const missing = new Set<string>()
+
+        for (const key of Object.keys(blocks)) {
+            const entry = blocks[key]
+            const value = entry?.value?.value ?? entry?.value
+            const content: string[] | undefined = value?.content
+            if (!content) continue
+            for (const childId of content) {
+                if (!blocks[childId]) missing.add(childId)
+            }
+        }
+
+        if (missing.size === 0) return
+
+        const fetched = await notionUnofficial.getBlocks([...missing])
+        const fetchedBlocks = (fetched as any)?.recordMap?.block ?? {}
+        let added = 0
+        for (const key of Object.keys(fetchedBlocks)) {
+            if (!blocks[key]) {
+                blocks[key] = fetchedBlocks[key]
+                added++
+            }
+        }
+        recordMap.block = blocks
+        // Nothing new could be fetched (inaccessible blocks) — stop to avoid looping.
+        if (added === 0) return
+    }
+}
+
 export async function getPageContent(pageId: string) {
     try {
         // Use the UNOFFICIAL client for fetching page content
         const recordMap = await notionUnofficial.getPage(pageId);
+        await hydrateMissingBlocks(recordMap as any);
         return normalizeRecordMap(recordMap as unknown as Record<string, unknown>) as unknown as ExtendedRecordMap;
     } catch (error: any) {
         console.error(`❌ getPageContent failed: ${error.message}`);
