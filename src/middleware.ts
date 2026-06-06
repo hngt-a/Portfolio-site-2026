@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 const locales = ['en', 'ja']
-const defaultLocale = 'ja' // Default to Japanese as per typical portfolio pref, or user vibe? Let's stick to 'ja' or 'en'. User said "Redirects to /ja or /en based on browser locale".
+// Show Japanese only to visitors whose browser language is Japanese.
+// Everyone else (other languages, or no Accept-Language header) gets English.
+const defaultLocale = 'en'
 
 function getLocale(request: NextRequest) {
   const acceptLanguage = request.headers.get('accept-language')
