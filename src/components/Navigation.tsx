@@ -18,6 +18,25 @@ const navItems = [
     { label: 'Contact', path: 'contact' },
 ]
 
+const INSTAGRAM_URL = 'https://www.instagram.com/shin.hanagata'
+
+const InstagramIcon = ({ className }: { className?: string }) => (
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+        className={className}
+    >
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+)
+
 export const Navigation = ({ lang }: { lang: string }) => {
     const pathname = usePathname()
     // const isEn = lang === 'en' // Not strictly needed for top nav if we just link
@@ -38,7 +57,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                 </div>
 
                 {/* DESKTOP MENU (> 700px) */}
-                <ul className="hidden min-[740px]:flex gap-6 text-sm items-center">
+                <ul className="hidden min-[740px]:flex gap-4 text-sm items-center">
                     {navItems.map((item) => {
                         const href = item.path === '' ? `/${lang}` : `/${lang}/${item.path}`
                         const isActive = pathname === href || (item.path === '' && pathname === `/${lang}/`)
@@ -57,6 +76,18 @@ export const Navigation = ({ lang }: { lang: string }) => {
                             </li>
                         )
                     })}
+                    {/* Instagram */}
+                    <li>
+                        <a
+                            href={INSTAGRAM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                            className="block transition-opacity hover:opacity-60"
+                        >
+                            <InstagramIcon className="w-5 h-5" />
+                        </a>
+                    </li>
                     {/* Language Switcher */}
                     <li>
                         <Link
@@ -108,6 +139,18 @@ export const Navigation = ({ lang }: { lang: string }) => {
                             </li>
                         )
                     })}
+                    {/* Instagram Mobile */}
+                    <li>
+                        <a
+                            href={INSTAGRAM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Instagram"
+                            className="block transition-opacity hover:opacity-60"
+                        >
+                            <InstagramIcon className="w-5 h-5" />
+                        </a>
+                    </li>
                     {/* Language Switcher Mobile */}
                     <li className="mt-4">
                         <Link
