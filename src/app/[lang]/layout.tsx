@@ -21,7 +21,7 @@ export default async function LangLayout({
             {/* Content Layer */}
             <div className="relative flex flex-col min-h-screen">
                 <Navigation lang={lang} />
-                <main className="flex-1 w-full max-w-[2000px] mx-auto px-4 md:px-8 py-8">
+                <main className="flex-1 w-full max-w-[1000px] mx-auto px-4 md:px-8 py-8">
                     {children}
                 </main>
             </div>

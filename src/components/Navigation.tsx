@@ -38,7 +38,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
                 </div>
 
                 {/* DESKTOP MENU (> 700px) */}
-                <ul className="hidden min-[701px]:flex gap-6 text-sm items-center">
+                <ul className="hidden min-[740px]:flex gap-6 text-sm items-center">
                     {navItems.map((item) => {
                         const href = item.path === '' ? `/${lang}` : `/${lang}/${item.path}`
                         const isActive = pathname === href || (item.path === '' && pathname === `/${lang}/`)
@@ -70,7 +70,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
 
                 {/* MOBILE TOGGLE (<= 700px) */}
                 <button
-                    className="min-[701px]:hidden z-50 relative p-2"
+                    className="min-[740px]:hidden z-50 relative p-2"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Toggle menu"
                 >
@@ -85,7 +85,7 @@ export const Navigation = ({ lang }: { lang: string }) => {
             {/* MOBILE OVERLAY */}
             <div
                 className={cn(
-                    "fixed inset-0 bg-black z-40 transition-all duration-300 flex flex-col items-center justify-center gap-8 min-[701px]:hidden",
+                    "fixed inset-0 bg-black z-40 transition-all duration-300 flex flex-col items-center justify-center gap-8 min-[740px]:hidden",
                     isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
                 )}
             >
