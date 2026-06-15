@@ -18,7 +18,7 @@ function getLocale(request: NextRequest) {
   return defaultLocale
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Top page goes to the works listing in the browser's locale.
