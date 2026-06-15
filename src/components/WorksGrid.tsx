@@ -17,7 +17,7 @@ export const WorksGrid = ({ works, lang }: WorksGridProps) => {
                 <Link
                     key={work.id}
                     href={`/${lang}/works/${work.slug}`}
-                    className="group block mix-blend-normal"
+                    className="group block mix-blend-normal hover:!bg-transparent"
                 >
                     {/* Work Item Container */}
                     <div className="">
