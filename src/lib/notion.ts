@@ -10,7 +10,20 @@ export const notionOfficial = new Client({
 
 // 2. Unofficial Client (for Page Rendering)
 // This is used to fetch the CONTENT of a specific page for react-notion-x.
-export const notionUnofficial = new NotionAPI()
+// Notion's Cloudflare rejects requests without browser-like headers (403),
+// so impersonate a regular browser session.
+export const notionUnofficial = new NotionAPI({
+    ofetchOptions: {
+        headers: {
+            'user-agent':
+                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+            accept: '*/*',
+            'accept-language': 'en-US,en;q=0.9',
+            origin: 'https://www.notion.so',
+            referer: 'https://www.notion.so/',
+        },
+    },
+})
 
 export interface WorkItem {
     id: string
