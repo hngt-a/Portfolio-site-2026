@@ -77,13 +77,13 @@ export default async function TicketsPage({
                                 href={s.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group block border border-white px-4 py-2 transition-all hover:bg-white hover:!text-black"
+                                className="group inline-block px-1 underline decoration-1 underline-offset-4 transition-all hover:bg-white hover:!text-black hover:no-underline"
                             >
                                 <span className="text-base font-bold group-hover:!text-black">{ja ? s.ja : s.en} →</span>
-                                {s.noteJa && (
-                                    <span className="block text-xs opacity-80 group-hover:!text-black">{ja ? s.noteJa : s.noteEn}</span>
-                                )}
                             </a>
+                            {s.noteJa && (
+                                <span className="block text-xs opacity-80 px-1">{ja ? s.noteJa : s.noteEn}</span>
+                            )}
                         </li>
                     ))}
                 </ul>
