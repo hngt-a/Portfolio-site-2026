@@ -55,8 +55,8 @@ export default async function TicketsPage({
     const ja = lang === 'ja'
 
     return (
-        <div className="max-w-3xl mx-auto animate-in fade-in duration-500 not-italic space-y-10">
-            <header className="space-y-2">
+        <div className="max-w-3xl mx-auto animate-in fade-in duration-500 not-italic space-y-6 leading-snug [&_li]:!mb-0 [&_p]:!mb-0 [&_li]:!leading-snug [&_p]:!leading-snug">
+            <header className="space-y-1">
                 <p className="text-xs opacity-80">
                     {ja ? '舞台芸術祭「秋の隕石2026東京」' : 'Autumn Meteorite 2026 Tokyo'}
                 </p>
@@ -68,20 +68,20 @@ export default async function TicketsPage({
                 </p>
             </header>
 
-            <section className="space-y-3">
+            <section className="space-y-2">
                 <h2 className="text-sm font-bold">{ja ? 'チケット' : 'Tickets'}</h2>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                     {sellers.map((s) => (
                         <li key={s.url}>
                             <a
                                 href={s.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block border border-white px-4 py-3 transition-all hover:bg-white hover:text-black"
+                                className="group block border border-white px-4 py-2 transition-all hover:bg-white hover:!text-black"
                             >
-                                <span className="text-base font-bold">{ja ? s.ja : s.en} →</span>
+                                <span className="text-base font-bold group-hover:!text-black">{ja ? s.ja : s.en} →</span>
                                 {s.noteJa && (
-                                    <span className="block text-xs mt-1 opacity-80">{ja ? s.noteJa : s.noteEn}</span>
+                                    <span className="block text-xs opacity-80 group-hover:!text-black">{ja ? s.noteJa : s.noteEn}</span>
                                 )}
                             </a>
                         </li>
@@ -89,7 +89,7 @@ export default async function TicketsPage({
                 </ul>
             </section>
 
-            <section className="space-y-2 text-sm">
+            <section className="space-y-1 text-sm">
                 <h2 className="font-bold">{ja ? '日程' : 'Dates'}</h2>
                 <ul>
                     {shows.map((d) => (
@@ -101,7 +101,7 @@ export default async function TicketsPage({
                 </p>
             </section>
 
-            <section className="space-y-2 text-sm">
+            <section className="space-y-1 text-sm">
                 <h2 className="font-bold">{ja ? '料金' : 'Prices'}</h2>
                 <p className="text-xs opacity-80">
                     {ja ? '全席自由（入場整理番号付）' : 'Unreserved seating (numbered entry)'}
