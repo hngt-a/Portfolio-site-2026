@@ -70,7 +70,7 @@ export default async function TicketsPage({
 
             <section className="space-y-2">
                 <h2 className="text-sm font-bold">{ja ? 'チケット' : 'Tickets'}</h2>
-                <ul className="space-y-2">
+                <ul className="flex flex-col gap-4">
                     {sellers.map((s) => (
                         <li key={s.url}>
                             <a
@@ -79,7 +79,7 @@ export default async function TicketsPage({
                                 rel="noopener noreferrer"
                                 className="group inline-block px-1 underline decoration-1 underline-offset-4 transition-all hover:bg-white hover:!text-black hover:no-underline"
                             >
-                                <span className="text-base font-bold group-hover:!text-black">{ja ? s.ja : s.en} →</span>
+                                <span className="text-lg font-bold group-hover:!text-black">{ja ? s.ja : s.en} →</span>
                             </a>
                             {s.noteJa && (
                                 <span className="block text-xs opacity-80 px-1">{ja ? s.noteJa : s.noteEn}</span>
