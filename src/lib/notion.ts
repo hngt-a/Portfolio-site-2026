@@ -25,6 +25,12 @@ export const notionUnofficial = new NotionAPI({
     },
 })
 
+// Covers served from /public instead of Notion (e.g. when the Notion cover
+// points to an external host that stopped serving the image).
+const COVER_OVERRIDES: Record<string, string> = {
+    chimeria: '/works/chimeria.jpg',
+}
+
 export interface WorkItem {
     id: string
     title: string
@@ -156,6 +162,8 @@ export async function getWorkItems(lang: string): Promise<WorkItem[]> {
                     meta[key] = value;
                 }
             });
+
+            if (COVER_OVERRIDES[slug]) coverImage = COVER_OVERRIDES[slug];
 
             return {
                 id: page.id,
@@ -361,6 +369,8 @@ export const getWorkBySlug = async (slug: string, lang: 'ja' | 'en'): Promise<Wo
                 meta[key] = value;
             }
         });
+
+        if (COVER_OVERRIDES[slug]) coverImage = COVER_OVERRIDES[slug];
 
         return {
             id: page.id,
